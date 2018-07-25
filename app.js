@@ -28,6 +28,7 @@ exports.nodeRestShop = function(req,res) {
   res.render('nodeRestShop');
 };
 
+mongoose.promise = global.Promise;
 
 app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({extended: false}));
