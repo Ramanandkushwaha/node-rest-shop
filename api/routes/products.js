@@ -1,7 +1,6 @@
 const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
-
 const Product = require("../models/product");
 
 router.get("/", (req, res, next) => {
@@ -102,13 +101,12 @@ router.patch("/:productId", (req, res, next) => {
   Product.update({ _id: id }, { $set: updateOps })
     .exec()
     .then(result => {
-      console.log(result);
       res.status(200).json({
-        message: 'Product Updated',
-        request: {
-          type: 'GET',
-          url: 'http://localhost:3000/products/' + id
-        }
+          message: 'Product updated',
+          request: {
+              type: 'GET',
+              url: 'http://localhost:3000/products/' + id
+          }
       });
     })
     .catch(err => {
@@ -131,7 +129,6 @@ router.delete("/:productId", (req, res, next) => {
           url: 'http://localhost:3000/products',
           body: { name: 'String', price: 'Number' }
         }
-
       });
     })
     .catch(err => {
