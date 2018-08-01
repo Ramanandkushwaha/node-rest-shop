@@ -7,6 +7,7 @@ const mongoose = require('mongoose');
 //routes which should handle requests
 const productRoutes = require('./api/routes/products');
 const orderRoutes = require('./api/routes/orders');
+const userRouter = require('./api/routes/user');
 
 // mongoose.connect(
 //   "mongodb://node-shop:" +
@@ -19,7 +20,7 @@ const orderRoutes = require('./api/routes/orders');
 
 mongoose.connect("mongodb://localhost:27017/nodeRestShop", { useNewUrlParser: true });
 var db = mongoose.connection;
-db.on('error', console.error.bind(console, 'connection error:'));
+db.on('error', console.error.bind(console, 'Connection error:'));
 db.once('open', function callback () {
   console.log("Database Connected!");
 });
@@ -50,6 +51,7 @@ app.use((req, res, next) => {
 
 app.use('/products', productRoutes);
 app.use('/orders', orderRoutes);
+app.use('/user', userRouter);
 
 app.use((req, res, next) => {
 	const error = new Error('Not found');
