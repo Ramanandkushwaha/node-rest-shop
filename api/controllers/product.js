@@ -3,7 +3,7 @@ const Product = require("../models/product");
 
 exports.products_get_all = (req, res, next) => {
   Product.find()
-    .select('_id name price_id productImage')
+    .select('_id name price')
     .exec()
     .then(docs => {
       const response = {
